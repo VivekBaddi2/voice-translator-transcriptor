@@ -4,9 +4,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import OpenAI from "openai";
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const upload = multer({ dest: "static/" });
@@ -74,5 +79,5 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 
 const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Server listening on http://localhost:${PORT}/`);
 });
