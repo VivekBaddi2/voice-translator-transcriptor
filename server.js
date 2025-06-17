@@ -25,12 +25,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from frontend/public
-app.use(express.static(path.join(__dirname, "frontend/public")));
+// Serve static files from frontend/dist (production build)
+app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 // Serve frontend index.html on root "/"
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/index.html"));
+  res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
 });
 
 app.post("/upload", upload.single("file"), async (req, res) => {
